@@ -38,6 +38,7 @@ public class ModifierConfig {
 							"A list of all chat message replacements that should be applied to player chat messages.",
 							"Multiple entries can be added to this config, and regexes are supported.",
 							"An individual config entry needs a list of \"keys\", which are one or more strings that should be looked out for, and a \"replacement\" string that replaces one of the keys.",
+							"Additionally, the value \"ignore_case\" can be added to each config, which, being false by default, specifies whether the \"keys\" should be matched without case-sensitivity.",
 							"A very basic replacement config that automatically applies correct spellings could look like this:",
 							"[[chatReplacements]]",
 							"	keys = [\"theyre\", \"theire\"]",
@@ -45,7 +46,8 @@ public class ModifierConfig {
 							"",
 							"[[chatReplacements]]",
 							"	keys = [\"Im\"]",
-							"	replacement = \"I'm\"")
+							"	replacement = \"I'm\"",
+							"	ignore_case = true")
 					.define("chatReplacements", new ArrayList<>());
 		}
 	}
@@ -56,8 +58,11 @@ public class ModifierConfig {
 		HashMap<String, List<String>> replacementMap = new HashMap<>();
 
 		for (AbstractCommentedConfig config : configList) {
+			List<String> keys = config.get("keys");
 			String replacement = config.get("replacement");
-			ArrayList<String> keys = config.get("keys");
+
+			if (config.getOrElse("ignore_case", false))
+				keys = keys.stream().map(s -> "(?i)" + s).toList();
 
 			replacementMap.put(replacement, keys);
 		}

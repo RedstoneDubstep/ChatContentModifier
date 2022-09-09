@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 group = 'redstonedubstep.mods'
-version = '1.0'
+version = '1.0.1'
 archivesBaseName = 'chatcontentmodifier'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -107,6 +107,18 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+}
+
+jar {
+    manifest {
+        attributes(["Specification-Title": "ChatContentModifier",
+                    "Specification-Vendor": "Redstone_Dubstep",
+                    "Specification-Version": "${version}",
+                    "Implementation-Title": "ChatContentModifier",
+                    "Implementation-Version": "${version}",
+                    "Implementation-Vendor" :"Redstone_Dubstep",
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
+    }
 }
 
 jar.finalizedBy('reobfJar')
