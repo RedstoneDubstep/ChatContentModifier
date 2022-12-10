@@ -4,7 +4,7 @@
 	"compatibilityLevel": "JAVA_17",
 	"refmap": "chatcontentmodifier.refmap.json",
 	"mixins": [
-		"OutgoingPlayerChatMessageMixin"
+		"ServerPlayerMixin"
 	],
 	"minVersion": "0.8"
 }
