@@ -21,7 +21,7 @@ import redstonedubstep.mods.chatcontentmodifier.ModifierConfig;
 @Mixin(ServerPlayer.class)
 public class ServerPlayerMixin {
 	@ModifyVariable(method = "sendChatMessage", at = @At("HEAD"), argsOnly = true)
-	private OutgoingChatMessage modifyChatMessage(OutgoingChatMessage original) {
+	private OutgoingChatMessage chatcontentmodifier$modifyChatMessage(OutgoingChatMessage original) {
 		String originalMessage = original.content().getString();
 		HashMap<String, List<String>> replacements = ModifierConfig.CONFIG.replacementMap;
 
