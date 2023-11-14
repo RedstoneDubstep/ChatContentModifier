@@ -3,11 +3,11 @@ package redstonedubstep.mods.chatcontentmodifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraftforge.fml.IExtensionPoint;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.network.NetworkConstants;
+import net.neoforged.fml.IExtensionPoint;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.network.NetworkConstants;
 
 @Mod("chatcontentmodifier")
 public class ChatContentModifier {

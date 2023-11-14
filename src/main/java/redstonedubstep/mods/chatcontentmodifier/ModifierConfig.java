@@ -8,21 +8,20 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import com.electronwill.nightconfig.core.AbstractCommentedConfig;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 
-@EventBusSubscriber(bus = Bus.MOD, value = Dist.DEDICATED_SERVER)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.DEDICATED_SERVER)
 public class ModifierConfig {
-	public static final ForgeConfigSpec SERVER_SPEC;
+	public static final ModConfigSpec SERVER_SPEC;
 	public static final Config CONFIG;
 
 	static {
-		final Pair<Config, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config::new);
+		final Pair<Config, ModConfigSpec> specPair = new ModConfigSpec.Builder().configure(Config::new);
 
 		SERVER_SPEC = specPair.getRight();
 		CONFIG = specPair.getLeft();
@@ -32,7 +31,7 @@ public class ModifierConfig {
 		public ConfigValue<List<AbstractCommentedConfig>> chatReplacements;
 		public HashMap<String, List<String>> replacementMap;
 
-		Config(ForgeConfigSpec.Builder builder) {
+		Config(ModConfigSpec.Builder builder) {
 			chatReplacements = builder
 					.comment(" --- ChatContentModifier Config File --- ",
 							"A list of all chat message replacements that should be applied to player chat messages.",
